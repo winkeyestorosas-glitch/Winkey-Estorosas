@@ -1,0 +1,629 @@
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Winkey Estorosas — Personal Website</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg:#0f1113;
+        --card:#121416;
+        --muted:#9aa0a6;
+        --accent:#6ee7b7;
+        --glass: rgba(255,255,255,0.03);
+        --max-width:1000px;
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      }
+      *{box-sizing:border-box}
+      html,body{height:100%}
+      body{
+        margin:0;
+        background: linear-gradient(180deg,#0b0c0d 0%, #0f1113 60%);
+        color:#e6eef2;
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        line-height:1.45;
+        padding:32px 20px;
+        display:flex;
+        justify-content:center;
+      }
+      .wrap{
+        width:100%;
+        max-width:var(--max-width);
+      }
+
+      header{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:16px;
+        margin-bottom:28px;
+      }
+      .brand{font-weight:700;letter-spacing:0.4px;font-size:1.05rem;}
+      nav ul{display:flex;gap:14px;list-style:none;padding:0;margin:0}
+      nav a{
+        color:var(--muted);
+        text-decoration:none;
+        padding:8px 10px;
+        border-radius:8px;
+        font-size:0.95rem;
+      }
+      nav a:hover{color:var(--accent);background:var(--glass)}
+
+      .hero{
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+        padding:28px;
+        border-radius:14px;
+        display:grid;
+        grid-template-columns: 220px 1fr;
+        gap:24px;
+        align-items:center;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        margin-bottom:22px;
+      }
+      .img-wrap{display:flex;justify-content:center}
+      .profile-pic{
+        width:180px;height:180px;border-radius:50%;object-fit:cover;
+        border:4px solid rgba(255,255,255,0.06);
+        box-shadow:0 10px 30px rgba(0,0,0,0.6);
+        transition:transform .35s ease, box-shadow .35s ease;
+      }
+      .profile-pic:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(0,0,0,0.7)}
+
+      .hero h1{margin:0 0 8px 0;font-size:1.5rem}
+      .hero p.lead{margin:0;color:var(--muted);font-size:1rem}
+      .hero .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+      .pill{background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:999px;font-size:0.85rem;color:var(--muted)}
+
+      section{margin-bottom:18px;padding:18px;border-radius:12px;}
+      .card{background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+      h2{margin:0 0 12px 0;font-size:1.1rem}
+      p{margin:0 0 10px 0;color:#dbe6ea}
+
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+      .project{padding:14px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.02)}
+      .project h3{margin:0 0 6px 0;font-size:1rem}
+      .project p{font-size:0.92rem;color:var(--muted)}
+
+      /* 🧢 Sneaker Photo Dashboard */
+      .photo-dashboard {
+        background:linear-gradient(180deg, rgba(255,255,255,0.012), rgba(255,255,255,0.01));
+        padding:20px;
+        border-radius:14px;
+      }
+      .photo-grid {
+        display:grid;
+        grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+        gap:16px;
+      }
+      .photo-grid img {
+        width:100%;
+        height:200px;
+        object-fit:cover;
+        border-radius:12px;
+        transition:transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .photo-grid img:hover {
+        transform:scale(1.05);
+        box-shadow:0 8px 24px rgba(0,0,0,0.6);
+      }
+
+      .contact-form{display:flex;flex-direction:column;gap:10px;max-width:520px}
+      .contact-form input,.contact-form textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit}
+      .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#3bd6a1);color:#052018;font-weight:700;border:none;cursor:pointer}
+
+      footer{margin-top:8px;text-align:center;color:var(--muted);font-size:0.9rem}
+
+      #bg-video {
+        position: fixed;top: 0;left: 0;width: 100%;height: 100%;
+        object-fit: cover;z-index: -1;opacity: 0.8;
+      }
+      #overlay {
+        position: fixed;top: 0;left: 0;width: 100%;height: 100%;
+        background: rgba(0,0,0,0.65);z-index: -1;
+      }
+
+      h1, h2, p, .pill, .brand, nav a {text-shadow: 0 2px 6px rgba(0,0,0,0.8);}
+      h1, h2 {color: #ffffff;}
+      p {color: #e6eef2;}
+
+      @media (max-width:720px){
+        .hero{grid-template-columns:1fr; text-align:center}
+        .img-wrap{justify-content:center}
+        nav ul{display:none}
+        header{gap:8px}
+      }
+     
+  :root{
+    --bg:#0f1113;
+    --card:#121416;
+    --muted:#9aa0a6;
+    --accent:#6ee7b7;
+    --accent2:#4ade80;
+    --glass: rgba(255,255,255,0.03);
+    --max-width:1000px;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  }
+  *{box-sizing:border-box;scroll-behavior:smooth;}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background: radial-gradient(circle at top, #101214 0%, #0a0b0c 80%);
+    color:#e6eef2;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.45;
+    padding:32px 20px;
+    display:flex;
+    justify-content:center;
+  }
+  .wrap{
+    width:100%;
+    max-width:var(--max-width);
+    animation: fadeInUp 1.2s ease;
+  }
+
+  /* ✨ HEADER */
+  header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:16px;
+    margin-bottom:28px;
+  }
+  .brand{
+    font-weight:700;
+    letter-spacing:0.4px;
+    font-size:1.1rem;
+    color:var(--accent);
+    text-shadow:0 0 10px rgba(110,231,183,0.4);
+  }
+  nav ul{display:flex;gap:14px;list-style:none;padding:0;margin:0}
+  nav a{
+    color:var(--muted);
+    text-decoration:none;
+    padding:8px 10px;
+    border-radius:8px;
+    font-size:0.95rem;
+    transition: all 0.3s ease;
+  }
+  nav a:hover{
+    color:var(--accent);
+    background:var(--glass);
+    box-shadow:0 0 12px rgba(110,231,183,0.2);
+  }
+
+  /* 🌟 HERO */
+  .hero{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding:28px;
+    border-radius:14px;
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap:24px;
+    align-items:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.6);
+    margin-bottom:22px;
+    animation: fadeIn 1.2s ease;
+  }
+  .profile-pic{
+    width:180px;height:180px;border-radius:50%;object-fit:cover;
+    border:3px solid rgba(110,231,183,0.3);
+    box-shadow:0 0 15px rgba(110,231,183,0.2);
+    transition:transform .4s ease, box-shadow .4s ease, filter .4s ease;
+    animation: float 6s ease-in-out infinite, neonPulse 3s ease-in-out infinite;
+  }
+  .profile-pic:hover{
+    transform:translateY(-8px) scale(1.05);
+    box-shadow:0 0 30px rgba(110,231,183,0.45);
+    filter:brightness(1.15);
+  }
+  .hero h1{margin:0 0 8px 0;font-size:1.5rem}
+  .hero p.lead{margin:0;color:var(--muted);font-size:1rem}
+  .meta{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+  .pill{
+    background:rgba(255,255,255,0.04);
+    padding:8px 12px;
+    border-radius:999px;
+    font-size:0.85rem;
+    color:var(--muted);
+    border:1px solid rgba(255,255,255,0.05);
+    transition:0.3s;
+  }
+  .pill:hover{
+    color:#fff;
+    background:rgba(110,231,183,0.1);
+    border-color:rgba(110,231,183,0.3);
+  }
+
+  /* 💫 CARDS / SECTIONS */
+  section{margin-bottom:20px;padding:18px;border-radius:12px;}
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));
+    border:1px solid rgba(255,255,255,0.04);
+    box-shadow:0 6px 16px rgba(0,0,0,0.5);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    animation: fadeIn 1.3s ease;
+  }
+  .card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(110,231,183,0.1);
+  }
+
+  h2{margin:0 0 12px 0;font-size:1.15rem;color:#fff}
+  p{margin:0 0 10px 0;color:#dbe6ea}
+
+  /* 🖼️ PROJECTS GRID */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+  .project{
+    padding:14px;
+    border-radius:10px;
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.05);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .project:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 20px rgba(110,231,183,0.15);
+  }
+  .project h3{margin:8px 0 6px 0;font-size:1rem}
+  .project p{font-size:0.92rem;color:var(--muted)}
+
+  /* 👟 PHOTO DASHBOARD */
+  .photo-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:16px;
+  }
+  .photo-grid img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:12px;
+    border:2px solid rgba(110,231,183,0.2);
+    box-shadow:0 0 8px rgba(110,231,183,0.15);
+    transition:transform 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+    animation: neonPulse 4s ease-in-out infinite;
+  }
+  .photo-grid img:hover{
+    transform:scale(1.07);
+    filter:brightness(1.1);
+    box-shadow:0 0 20px rgba(110,231,183,0.45);
+  }
+
+  /* 💼 Job Gallery */
+  #jobs img {
+    animation: neonPulse 5s ease-in-out infinite;
+  }
+
+  /* 🎥 Video Neon Glow */
+  #video video {
+    border:2px solid rgba(110,231,183,0.25);
+    box-shadow:0 0 15px rgba(110,231,183,0.25);
+    animation: neonPulse 6s ease-in-out infinite;
+  }
+
+  /* 💌 CONTACT FORM */
+  .contact-form{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    max-width:520px;
+  }
+  .contact-form input,.contact-form textarea{
+    background:rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.06);
+    padding:10px;
+    border-radius:8px;
+    color:inherit;
+    font-size:0.95rem;
+  }
+  .contact-form input:focus,.contact-form textarea:focus{
+    outline:none;
+    border-color:var(--accent);
+    box-shadow:0 0 8px rgba(110,231,183,0.25);
+  }
+
+  .btn{
+    display:inline-block;
+    padding:10px 14px;
+    border-radius:10px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    color:#052018;
+    font-weight:700;
+    border:none;
+    cursor:pointer;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 16px rgba(110,231,183,0.4);
+  }
+
+  footer{
+    margin-top:12px;
+    text-align:center;
+    color:var(--muted);
+    font-size:0.9rem;
+    opacity:0.9;
+  }
+
+  /* 🌌 BACKGROUND VIDEO + OVERLAY */
+  #bg-video {
+    position: fixed;top:0;left:0;width:100%;height:100%;
+    object-fit:cover;z-index:-2;opacity:0.75;
+    filter:brightness(0.65);
+  }
+  #overlay {
+    position: fixed;top:0;left:0;width:100%;height:100%;
+    background: linear-gradient(180deg,rgba(0,0,0,0.6),rgba(0,0,0,0.75));
+    z-index:-1;
+  }
+
+  /* 🌀 ANIMATIONS */
+  @keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes fadeInUp{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+  @keyframes neonPulse{
+    0%,100%{box-shadow:0 0 12px rgba(110,231,183,0.2);}
+    50%{box-shadow:0 0 24px rgba(110,231,183,0.45);}
+  }
+
+  @media (max-width:720px){
+    .hero{grid-template-columns:1fr;text-align:center}
+    nav ul{display:none}
+  }
+  .img-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.img-wrap::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 230px;
+  height: 230px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #6ee7b7, #3bd6a1, #6ee7b7);
+  filter: blur(40px);
+  opacity: 0.4;
+  animation: rotateGlow 6s linear infinite;
+  z-index: -1;
+}
+
+@keyframes rotateGlow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.card {
+  position: relative;
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 12px;
+  background: linear-gradient(120deg, transparent, rgba(110,231,183,0.15), transparent);
+  z-index: 0;
+  animation: borderMove 3s linear infinite;
+}
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+@keyframes borderMove {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(50%); }
+}
+.float-nav {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background: rgba(255,255,255,0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 100;
+}
+.float-nav a {
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform 0.3s, text-shadow 0.3s;
+}
+.float-nav a:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 10px var(--accent);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  overflow-y: scroll;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+  
+</style>
+
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header>
+        <div class="brand">Winkey Estorosas</div>
+        <nav>
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#photos">Sneakers</a></li>
+            <li><a href="#jobs">Jobs</a></li>
+            <li><a href="#video">Video</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+
+      <video autoplay muted loop id="bg-video">
+        <source src="vid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div id="overlay"></div>
+
+      <main>
+        <section class="hero">
+          <div class="img-wrap">
+            <img src="wi.jpg" alt="Profile picture" class="profile-pic">
+          </div>
+          <div>
+            <h1>Hi, I’m <strong>Winkey Estorosas</strong></h1>
+            <p class="lead">I build things that solve problems and help people — whether that’s through code, design, or thoughtful collaboration.</p>
+            <div class="meta">
+              <span class="pill">Developer • Designer</span>
+              <span class="pill">Lifelong Learner</span>
+              <span class="pill">Sneaker Enthusiast 👟</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" class="card">
+          <h2>About Me</h2>
+          <p>I’m a student passionate about creativity, technology, and sneakers. I love creating designs that express individuality and innovation — both in code and in style.</p>
+        </section>
+
+        <section id="projects" class="card">
+          <h2>Projects</h2>
+          <div class="grid">
+            <div class="project">
+              <h3>Project One</h3>
+              <p>Short description of a project you built.</p>
+            </div>
+            <div class="project">
+              <h3>Project Two</h3>
+              <p>Short description — showcase tools and impact.</p>
+            </div>
+            <div class="project">
+              <h3>Project Three</h3>
+              <p>Short description — link to a demo or repo if available.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 👟 Sneaker Photo Dashboard -->
+        <section id="photos" class="photo-dashboard">
+          <h2>Sneaker Dashboard</h2>
+          <p>A showcase of my favorite sneakers and styles.</p>
+          <div class="photo-grid">
+            <img src="nike.jpg" alt="Sneaker 1">
+            <img src="p.jpg" alt="Sneaker 2">
+            <img src="vans.jpg" alt="Sneaker 3">
+            <img src="n.jpg" alt="Sneaker 4">
+            <img src="b.jpg" alt="Sneaker 5">
+            <img src="an.jpg" alt="Sneaker 6">
+          </div>
+        </section>
+        <!-- 💼 Job Gallery Section -->
+<section id="jobs" class="card">
+  <h2>Job Gallery</h2>
+  <p>A glimpse of my work experiences and creative contributions.</p>
+  <div class="grid">
+    <div class="project">
+      <img src="online.jpg" alt="Job 1" style="width:100%;border-radius:10px;height:180px;object-fit:cover;">
+      <h3>Office Work</h3>
+      <p>Handling administrative tasks, teamwork, and digital coordination.</p>
+    </div>
+    <div class="project">
+      <img src="photo.jpg" alt="Job 2" style="width:100%;border-radius:10px;height:180px;object-fit:cover;">
+      <h3>Creative Design</h3>
+      <p>Designing layouts and visual content for brands and presentations.</p>
+    </div>
+    <div class="project">
+      <img src="draw.jpg" alt="Job 3" style="width:100%;border-radius:10px;height:180px;object-fit:cover;">
+      <h3>Development Work</h3>
+      <p>Building and maintaining websites and digital projects.</p>
+    </div>
+  </div>
+</section>
+<!-- 🎥 My Video Section -->
+<section id="video" class="card">
+  <h2>My Video</h2>
+  <p>A short clip that represents my passion, creativity, and work style.</p>
+  <div style="display:flex;justify-content:center;margin-top:10px;">
+    <video controls style="width:100%;max-width:700px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,0.6);">
+      <source src="skwela.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</section>
+        <section id="contact" class="card">
+          <h2>Contact</h2>
+          <p>Want to collaborate or chat about sneakers? Send me a message or email at <strong>youremail@example.com</strong>.</p>
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you — this form is a demo. Replace with your backend or mailto link.');">
+            <input type="text" placeholder="Your name" required>
+            <input type="email" placeholder="Your email" required>
+            <textarea rows="5" placeholder="Message" required></textarea>
+            <button class="btn" type="submit">Send Message</button>
+          </form>
+        </section>
+      </main>
+
+      <footer>
+        © <span id="year"></span> Winkey Estorosas. Built with care.
+      </footer>
+    </div>
+
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+    <script>
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.2 });
+
+sections.forEach(section => observer.observe(section));
+</script>
+<div class="float-nav">
+  <a href="#about">👤</a>
+  <a href="#projects">💻</a>
+  <a href="#photos">👟</a>
+  <a href="#jobs">💼</a>
+  <a href="#video">🎥</a>
+  <a href="#contact">✉️</a>
+</div>
+
+
+  </body>
+  </html>
